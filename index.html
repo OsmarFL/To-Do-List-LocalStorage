@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List interactiva</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header>
         <h1>Mi Lista de Tareas</h1>
     </header>
     <main>
+
+        <!-- Contenedor para agregar nuevas tareas -->
+        <div class="agregarTarea">
+            <input type="text" id="inputTarea" placeholder="Escribe una nueva tarea...">
+            <button id="btnAgregar">Agregar</button>
+        </div>
+
+        <!-- Tareas pendientes --> 
         <p class="contador">Tareas pendientes: <span id="contador">0</span></p>
         <ul id="tareas"></ul>
+
     </main>
     <script src="script.js"></script>
 </body>

@@ -1,15 +1,47 @@
+/* Array para almacenar las tareas */
 let tareas = [];
 
+/* Elementos del DOM */
 const listaTareas = document.getElementById('tareas');
 const contadorElement = document.getElementById('contador');
+const inputTarea = document.getElementById('inputTarea');
+const btnAgregar = document.getElementById('btnAgregar');
 
+/* Cargar tareas desde el almacenamiento local al iniciar la aplicación */
 cargarTareas();
 
+/* Eventos y funcionespara agregar una nueva tarea */
+btnAgregar.addEventListener('click', agregarTarea);
+inputTarea.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') agregarTarea();
+});
+
+function agregarTarea() {
+
+    const texto = inputTarea.value.trim();
+
+    /* Validar que el campo de texto no esté vacío */
+    if (texto === '') {
+        alert('Por favor, ingresa una tarea.');
+        return;
+    }
+
+    /* Crear un objeto tarea y agregarlo al array */
+    const tarea = { id: Date.now(), texto: texto, completada: false };
+    tareas.push(tarea);
+    inputTarea.value = '';
+
+    /* Guardar las tareas en el almacenamiento local y renderizar la lista */
+    guardarTareas();
+    renderizarTareas();
+}
+
+/* Función para renderizar las tareas en la lista */
 function renderizarTareas() {
     listaTareas.innerHTML = '';
     tareas.forEach(tarea => {
         const li = document.createElement('li');
-        li.textContent = tarea.texto;
+        li.innerHTML = `<span class="textoTarea">${tarea.texto}</span>`
         listaTareas.appendChild(li);
     });
     actualizarContador();
