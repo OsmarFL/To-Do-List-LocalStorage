@@ -41,3 +41,33 @@ main {
     border-radius: 5px;
     border-left: 4px solid rgb(122, 240, 236);
 }
+
+.agregarTarea {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+#inputTarea {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #888888;
+    border-radius: 5px;
+    font-size: 16px;
+}
+#inputTarea:focus {
+    outline: none;
+    border-color: rgb(122, 240, 236);
+}
+#btnAgregar {
+    flex: 0.3;
+    padding: 2px;
+    border: 2px solid;
+    background-color: rgb(122, 240, 236);
+    border-radius: 5px;
+    border-width: 1px;
+    font-size: 16px;
+    cursor: pointer;
+}
+#btnAgregar:hover {
+    border-color: rgb(83, 237, 251);
+}
