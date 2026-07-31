@@ -90,6 +90,14 @@ function toggleCompletada(id) {
 }
 
 function limpiarCompletadas() {
+    
+    /* hotfix: Validar si hay tareas completadas antes de limpiar */
+    const completadas = tareas.filter(t => t.completada).length;
+    if (completadas === 0) {
+        alert('No hay tareas completadas para limpiar');
+        return;
+    }
+    
     tareas = tareas.filter(t => !t.completada);
     guardarTareas();
     renderizarTareas();
