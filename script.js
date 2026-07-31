@@ -10,7 +10,7 @@ const btnAgregar = document.getElementById('btnAgregar');
 /* Cargar tareas desde el almacenamiento local al iniciar la aplicación */
 cargarTareas();
 
-/* Eventos y funcionespara agregar una nueva tarea */
+/* Eventos y funciones para manejar tareas */
 btnAgregar.addEventListener('click', agregarTarea);
 inputTarea.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') agregarTarea();
@@ -51,6 +51,15 @@ function editarTarea(id) {
     }
 }
 
+
+function eliminarTarea(id) {
+
+    tareas = tareas.filter(t => t.id !== id);
+    guardarTareas();
+    renderizarTareas();
+    
+}
+
 /* Función para renderizar las tareas en la lista */
 function renderizarTareas() {
     listaTareas.innerHTML = '';
@@ -59,6 +68,7 @@ function renderizarTareas() {
         li.innerHTML = `
              <span class="textoTarea" ondblclick="editarTarea(${tarea.id})">${tarea.texto}</span>
              <button class="btnEditar" onclick="editarTarea(${tarea.id})">Editar</button>
+             <button class="btnEliminar" onclick="eliminarTarea(${tarea.id})">Eliminar</button>
         `;
         listaTareas.appendChild(li);
     });
