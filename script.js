@@ -7,6 +7,10 @@ const contadorElement = document.getElementById('contador');
 const inputTarea = document.getElementById('inputTarea');
 const btnAgregar = document.getElementById('btnAgregar');
 const filtros = document.querySelectorAll('.filtro');
+const btnLimpiar = document.getElementById('btnLimpiar');
+btnLimpiar.addEventListener('click', limpiarCompletadas);
+
+
 
 /* Filtros */
 let filtroActual = 'todas';
@@ -25,6 +29,7 @@ cargarTareas();
 
 /* Eventos y funciones para manejar tareas */
 btnAgregar.addEventListener('click', agregarTarea);
+btnLimpiar.addEventListener('click', limpiarCompletadas);
 inputTarea.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') agregarTarea();
 });
@@ -82,6 +87,12 @@ function toggleCompletada(id) {
         guardarTareas();
         renderizarTareas();
     }
+}
+
+function limpiarCompletadas() {
+    tareas = tareas.filter(t => !t.completada);
+    guardarTareas();
+    renderizarTareas();
 }
 
 /* Función para renderizar las tareas en la lista */

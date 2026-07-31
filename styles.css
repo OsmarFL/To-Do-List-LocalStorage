@@ -156,3 +156,19 @@ input[type="checkbox"] {
     color: rgb(0, 0, 0);
     border-color: rgb(122, 240, 236);
 }
+
+#btnLimpiar {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#btnLimpiar:hover {
+    background-color: #e64a19;
+}
