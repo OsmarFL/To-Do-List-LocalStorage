@@ -2,13 +2,16 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f5f5f5;
 }
+
 header {
     margin-bottom: 30px;
     text-align: center;
 }
+
 h1 {
     font-size: 2.5rem;
 }
+
 main {
     max-width: 600px;
     margin: 0 auto;
@@ -17,12 +20,14 @@ main {
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
 .contador {
     text-align: center;
     font-size: 18px;
     margin-bottom: 20px;
     color: #3b3a3a;
 }
+
 #contador {
     font-weight: bold;
     color: rgb(25, 60, 60);
@@ -31,6 +36,7 @@ main {
     list-style: none;
     margin-bottom: 25px;
 }
+
 #tareas li {
     display: flex;
     align-items: center;
@@ -47,6 +53,7 @@ main {
     gap: 10px;
     margin-bottom: 20px;
 }
+
 #inputTarea {
     flex: 1;
     padding: 12px;
@@ -54,10 +61,12 @@ main {
     border-radius: 5px;
     font-size: 16px;
 }
+
 #inputTarea:focus {
     outline: none;
     border-color: rgb(122, 240, 236);
 }
+
 #btnAgregar {
     flex: 0.3;
     padding: 2px;
@@ -68,6 +77,26 @@ main {
     font-size: 16px;
     cursor: pointer;
 }
+
 #btnAgregar:hover {
     border-color: rgb(83, 237, 251);
+}
+
+.textoTarea {
+    flex: 1;
+    font-size: 16px;
+}
+
+.btnEditar {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #FFC107;
+    color: white;
+}
+
+.btnEditar:hover {
+    background-color: #FFA000;
 }
