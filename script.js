@@ -60,18 +60,38 @@ function eliminarTarea(id) {
     
 }
 
+function toggleCompletada(id) {
+
+    const tarea = tareas.find(t => t.id === id);
+    
+    if (tarea) {
+        tarea.completada = !tarea.completada;
+        guardarTareas();
+        renderizarTareas();
+    }
+}
+
 /* Función para renderizar las tareas en la lista */
 function renderizarTareas() {
+
     listaTareas.innerHTML = '';
     tareas.forEach(tarea => {
-        const li = document.createElement('li');
-        li.innerHTML = `
+
+    const li = document.createElement('li');
+
+    if (tarea.completada) {
+        li.classList.add('completada');
+    }
+
+    li.innerHTML = `
+            <input type="checkbox" ${tarea.completada ? 'checked' : ''} onchange="toggleCompletada(${tarea.id})">
              <span class="textoTarea" ondblclick="editarTarea(${tarea.id})">${tarea.texto}</span>
              <button class="btnEditar" onclick="editarTarea(${tarea.id})">Editar</button>
              <button class="btnEliminar" onclick="eliminarTarea(${tarea.id})">Eliminar</button>
         `;
         listaTareas.appendChild(li);
     });
+
     actualizarContador();
 }
 
