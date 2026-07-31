@@ -6,12 +6,30 @@ const listaTareas = document.getElementById('tareas');
 const contadorElement = document.getElementById('contador');
 const inputTarea = document.getElementById('inputTarea');
 const btnAgregar = document.getElementById('btnAgregar');
+const filtros = document.querySelectorAll('.filtro');
+const btnLimpiar = document.getElementById('btnLimpiar');
+btnLimpiar.addEventListener('click', limpiarCompletadas);
+
+
+
+/* Filtros */
+let filtroActual = 'todas';
+
+filtros.forEach(filtro => {
+    filtro.addEventListener('click', () => {
+        filtros.forEach(f => f.classList.remove('activo'));
+        filtro.classList.add('activo');
+        filtroActual = filtro.dataset.filtro;
+        renderizarTareas();
+    });
+});
 
 /* Cargar tareas desde el almacenamiento local al iniciar la aplicación */
 cargarTareas();
 
-/* Eventos y funcionespara agregar una nueva tarea */
+/* Eventos y funciones para manejar tareas */
 btnAgregar.addEventListener('click', agregarTarea);
+btnLimpiar.addEventListener('click', limpiarCompletadas);
 inputTarea.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') agregarTarea();
 });
@@ -36,14 +54,78 @@ function agregarTarea() {
     renderizarTareas();
 }
 
+function editarTarea(id) {
+
+    const tarea = tareas.find(t => t.id === id);
+
+    if (!tarea) return;
+
+    const nuevoTexto = prompt('Editar tarea:', tarea.texto);
+    
+    if (nuevoTexto !== null && nuevoTexto.trim() !== '') {
+        tarea.texto = nuevoTexto.trim();
+        guardarTareas();
+        renderizarTareas();
+    }
+}
+
+
+function eliminarTarea(id) {
+
+    tareas = tareas.filter(t => t.id !== id);
+    guardarTareas();
+    renderizarTareas();
+    
+}
+
+function toggleCompletada(id) {
+
+    const tarea = tareas.find(t => t.id === id);
+    
+    if (tarea) {
+        tarea.completada = !tarea.completada;
+        guardarTareas();
+        renderizarTareas();
+    }
+}
+
+function limpiarCompletadas() {
+    tareas = tareas.filter(t => !t.completada);
+    guardarTareas();
+    renderizarTareas();
+}
+
 /* Función para renderizar las tareas en la lista */
 function renderizarTareas() {
+
     listaTareas.innerHTML = '';
-    tareas.forEach(tarea => {
+
+    let tareasFiltradas = tareas;
+
+    if (filtroActual === 'pendientes') {
+        tareasFiltradas = tareas.filter(t => !t.completada);
+    } 
+    else if (filtroActual === 'completadas') {
+        tareasFiltradas = tareas.filter(t => t.completada);
+    }
+
+    tareasFiltradas.forEach(tarea => {
+
         const li = document.createElement('li');
-        li.innerHTML = `<span class="textoTarea">${tarea.texto}</span>`
-        listaTareas.appendChild(li);
-    });
+
+        if (tarea.completada) {
+            li.classList.add('completada');
+        }
+
+        li.innerHTML = `
+                <input type="checkbox" ${tarea.completada ? 'checked' : ''} onchange="toggleCompletada(${tarea.id})">
+                <span class="textoTarea" ondblclick="editarTarea(${tarea.id})">${tarea.texto}</span>
+                <button class="btnEditar" onclick="editarTarea(${tarea.id})">Editar</button>
+                <button class="btnEliminar" onclick="eliminarTarea(${tarea.id})">Eliminar</button>
+            `;
+            listaTareas.appendChild(li);
+        });
+
     actualizarContador();
 }
 
