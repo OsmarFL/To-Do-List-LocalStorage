@@ -36,12 +36,30 @@ function agregarTarea() {
     renderizarTareas();
 }
 
+function editarTarea(id) {
+
+    const tarea = tareas.find(t => t.id === id);
+
+    if (!tarea) return;
+
+    const nuevoTexto = prompt('Editar tarea:', tarea.texto);
+    
+    if (nuevoTexto !== null && nuevoTexto.trim() !== '') {
+        tarea.texto = nuevoTexto.trim();
+        guardarTareas();
+        renderizarTareas();
+    }
+}
+
 /* Función para renderizar las tareas en la lista */
 function renderizarTareas() {
     listaTareas.innerHTML = '';
     tareas.forEach(tarea => {
         const li = document.createElement('li');
-        li.innerHTML = `<span class="textoTarea">${tarea.texto}</span>`
+        li.innerHTML = `
+             <span class="textoTarea" ondblclick="editarTarea(${tarea.id})">${tarea.texto}</span>
+             <button class="btnEditar" onclick="editarTarea(${tarea.id})">Editar</button>
+        `;
         listaTareas.appendChild(li);
     });
     actualizarContador();
