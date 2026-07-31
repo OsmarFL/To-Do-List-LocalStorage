@@ -114,3 +114,19 @@ main {
 .btnEliminar:hover {
     background-color: #da190b;
 }
+
+#tareas li.completada {
+    opacity: 0.6;
+    border-left-color: #999;
+}
+
+#tareas li.completada .textoTarea {
+    text-decoration: line-through;
+    color: #999;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
