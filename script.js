@@ -51,7 +51,7 @@ function editarTarea(id) {
     }
 }
 
-
+/* Elimina una tarea */
 function eliminarTarea(id) {
 
     tareas = tareas.filter(t => t.id !== id);
