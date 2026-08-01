@@ -15,6 +15,7 @@ btnLimpiar.addEventListener('click', limpiarCompletadas);
 /* Filtros */
 let filtroActual = 'todas';
 
+/* Maneja el cambio de filtro activo (Todas / Pendientes / Completadas) */
 filtros.forEach(filtro => {
     filtro.addEventListener('click', () => {
         filtros.forEach(f => f.classList.remove('activo'));
