@@ -16,6 +16,7 @@ inputTarea.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') agregarTarea();
 });
 
+/* Crear una nueva tarea a partir del texto ingresado por el usuario */
 function agregarTarea() {
 
     const texto = inputTarea.value.trim();
