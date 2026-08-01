@@ -54,6 +54,7 @@ function agregarTarea() {
     renderizarTareas();
 }
 
+/* Permite editar una tarea existente */
 function editarTarea(id) {
 
     const tarea = tareas.find(t => t.id === id);
