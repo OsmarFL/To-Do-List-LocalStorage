@@ -80,6 +80,7 @@ function eliminarTarea(id) {
     
 }
 
+/* Marca una tarea como completada */
 function toggleCompletada(id) {
 
     const tarea = tareas.find(t => t.id === id);
